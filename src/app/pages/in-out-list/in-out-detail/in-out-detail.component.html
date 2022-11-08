@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>{{item.bienSoXe}}</nb-card-header>
+  <nb-card-body>
+    <div class="d-flex">
+      <div class="col-lg-6">
+        <div>Vào</div>
+        <img width="100%" height="100%" src="{{item.mediaLink}}"/>
+        <div>{{item.vao | date: 'short'}}</div>
+      </div>
+      <div class="col-lg-6">
+        <div>Ra</div>
+        <img width="100%" height="100%" src="{{item.mediaLink}}"/>
+        <div>{{item.ra | date: 'short'}}</div>
+      </div>
+      <div></div>
+    </div>
+  </nb-card-body>
+</nb-card>

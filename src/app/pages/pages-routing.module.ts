@@ -24,6 +24,16 @@ const routes: Routes = [{
         .then(m => m.LayoutModule),
     },
     {
+      path: 'in-out-list',
+      loadChildren: () => import('./in-out-list/in-out-list.module')
+        .then(m => m.InOutListModule),
+    },
+    {
+      path: 'payment',
+      loadChildren: () => import('./payment/payment.module')
+        .then(m => m.PaymentModule),
+    },
+    {
       path: 'forms',
       loadChildren: () => import('./forms/forms.module')
         .then(m => m.FormsModule),
