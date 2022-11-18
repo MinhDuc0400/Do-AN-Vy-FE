@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PeriodicElement } from '../in-out-list.component';
 import { NbDialogService } from '@nebular/theme';
 import { PaymentPopupComponent } from '../payment-popup/payment-popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-in-out-detail',
@@ -12,6 +13,7 @@ export class InOutDetailComponent implements OnInit {
 
   constructor(
     private dialogService: NbDialogService,
+    private router: Router,
   ) { }
 
   item: PeriodicElement = {
@@ -33,6 +35,10 @@ export class InOutDetailComponent implements OnInit {
         title: 'Payment',
       },
     });
+  }
+
+  back() {
+    this.router.navigate(['pages/in-out-list']);
   }
 
 }

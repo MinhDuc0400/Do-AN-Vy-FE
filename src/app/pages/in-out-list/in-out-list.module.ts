@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InOutListComponent } from './in-out-list.component';
 import { InOutListRoutingModule } from './in-out-list-routing.module';
 import { InOutDetailComponent } from './in-out-detail/in-out-detail.component';
-import { NbButtonModule, NbCardModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule } from '@nebular/theme';
 import { PaymentPopupComponent } from './payment-popup/payment-popup.component';
 
 
@@ -16,6 +16,7 @@ import { PaymentPopupComponent } from './payment-popup/payment-popup.component';
     InOutListRoutingModule,
     NbCardModule,
     NbButtonModule,
+    NbIconModule,
   ],
 })
 export class InOutListModule { }
