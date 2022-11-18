@@ -4,16 +4,18 @@ import { MatTableModule } from '@angular/material/table';
 import { InOutListComponent } from './in-out-list.component';
 import { InOutListRoutingModule } from './in-out-list-routing.module';
 import { InOutDetailComponent } from './in-out-detail/in-out-detail.component';
-import { NbCardModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule } from '@nebular/theme';
+import { PaymentPopupComponent } from './payment-popup/payment-popup.component';
 
 
 @NgModule({
-  declarations: [InOutListComponent, InOutDetailComponent],
-    imports: [
-        CommonModule,
-        MatTableModule,
-        InOutListRoutingModule,
-        NbCardModule,
-    ],
+  declarations: [InOutListComponent, InOutDetailComponent, PaymentPopupComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    InOutListRoutingModule,
+    NbCardModule,
+    NbButtonModule,
+  ],
 })
 export class InOutListModule { }

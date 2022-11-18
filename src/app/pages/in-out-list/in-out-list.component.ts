@@ -76,7 +76,7 @@ export class InOutListComponent implements OnInit {
   columns: string[] = ['bienSoXe', 'vao', 'ra', 'tongThoiGianGui', 'tongTien'];
   dataSource = ELEMENT_DATA;
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

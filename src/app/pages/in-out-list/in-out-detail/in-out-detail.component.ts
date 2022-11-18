@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { PeriodicElement } from '../in-out-list.component';
+import { NbDialogService } from '@nebular/theme';
+import { PaymentPopupComponent } from '../payment-popup/payment-popup.component';
 
 @Component({
   selector: 'ngx-in-out-detail',
   templateUrl: './in-out-detail.component.html',
-  styleUrls: ['./in-out-detail.component.scss']
+  styleUrls: ['./in-out-detail.component.scss'],
 })
 export class InOutDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialogService: NbDialogService,
+  ) { }
 
   item: PeriodicElement = {
     id: 1,
@@ -21,6 +25,14 @@ export class InOutDetailComponent implements OnInit {
   };
 
   ngOnInit(): void {
+  }
+
+  open() {
+    this.dialogService.open(PaymentPopupComponent, {
+      context: {
+        title: 'Payment',
+      },
+    });
   }
 
 }
