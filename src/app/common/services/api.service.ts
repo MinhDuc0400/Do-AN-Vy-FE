@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../../../do-an/ngx-admin/src/environments/environment';
 import { NbToastrService } from '@nebular/theme';
 import { catchError, pluck } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
