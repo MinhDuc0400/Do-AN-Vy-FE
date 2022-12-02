@@ -20,6 +20,8 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +41,7 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   bootstrap: [AppComponent],
 })

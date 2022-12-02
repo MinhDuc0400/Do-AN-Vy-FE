@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../../common/services/data.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   id: number;
@@ -12,57 +14,6 @@ export interface PeriodicElement {
   thoiGianThanhToan?: Date;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    ra: new Date(),
-    tongThoiGianGui: 180,
-    tongTien: '100000',
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    ra: new Date(),
-    tongThoiGianGui: 180,
-    tongTien: '100000',
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    ra: new Date(),
-    tongThoiGianGui: 180,
-    tongTien: '100000',
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-  {
-    id: 1,
-    bienSoXe: '29D1-14020',
-    vao: new Date(),
-    ra: new Date(),
-    tongThoiGianGui: 180,
-    tongTien: '100000',
-    mediaLink: 'https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_09_19/ttxvn_canh_sat_giao_thong_binh_duong_khang_dinh_cap_mot_bks_61a_66666_duy_nhat_162920275_4085687.jpg',
-  },
-];
-
 @Component({
   selector: 'ngx-in-out-list',
   templateUrl: './in-out-list.component.html',
@@ -71,19 +22,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 export class InOutListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-
   columns: string[] = ['bienSoXe', 'vao', 'ra', 'tongThoiGianGui', 'tongTien'];
-  dataSource = ELEMENT_DATA;
+  dataSource;
   constructor(
     private router: Router,
+    private dataService: DataService,
   ) { }
 
   ngOnInit(): void {
+    this.dataService.getListData().subscribe(res => {
+      this.dataSource = new MatTableDataSource(res);
+    });
   }
 
-  viewDetail(item: PeriodicElement) {
-    this.router.navigate(['./pages/in-out-list/' + item.id]);
+  viewDetail(item) {
+    this.router.navigate(['./pages/in-out-list/' + item._id]);
   }
 
 }

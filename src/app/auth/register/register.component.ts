@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AuthenticationService } from '../../common/services/autentication.service';
+import { UserTypeEnum } from '../../common/enums/userType.enum';
 
 @Component({
   selector: 'ngx-register',
@@ -12,8 +13,16 @@ import { AuthenticationService } from '../../common/services/autentication.servi
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isLoading = false;
+  userTypeList = [
+    {
+      value: UserTypeEnum.ADMIN,
+    },
+    {
+      value: UserTypeEnum.USER,
+    },
+  ];
 
-  constructor(
+      constructor(
     private authenticationService: AuthenticationService,
     private sweetAlert: NbToastrService,
     private router: Router,
@@ -42,9 +51,14 @@ export class RegisterComponent implements OnInit {
         }]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-    });
+      userType: new FormControl(this.userTypeList[0].value, [Validators.required]),
+  });
 
     // this.checkAuth();
+  }
+
+  get userType() {
+    return this.registerForm.get('userType');
   }
 
   get email() {
@@ -68,17 +82,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // this.authenticationService.signup(
-    //   this.email.value,
-    //   this.password.value,
-    //   this.confirmPassword.value,
-    //   this.firstName.value,
-    //   this.lastName.value,
-    // ).subscribe(res => {
-    //   if (res && res._id) {
-    //     this.router.navigate([URL_LOGIN]);
-    //   }
-    // });
+    this.authenticationService.signup(
+      this.email.value,
+      this.password.value,
+      this.confirmPassword.value,
+      this.firstName.value,
+      this.lastName.value,
+      this.userType.value,
+    ).subscribe(res => {
+      if (res && res._id) {
+        this.router.navigate(['/auth/login']);
+      }
+    });
   }
 
 }

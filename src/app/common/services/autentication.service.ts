@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../../../../../do-an/ngx-admin/src/app/common/interfaces/user';
 import { GoogleAuthProvider } from 'firebase/auth';
-import { environment } from '../../../../../../do-an/ngx-admin/src/environments/environment';
 import { ApiService } from './api.service';
-import { UserTypeEnum } from '../../../../../../do-an/ngx-admin/src/app/common/enum/userType.enum';
-import { RegisterRequest, RegisterResponse } from '../../../../../../do-an/ngx-admin/src/app/common/interfaces/auth';
-import { URL_LOGIN } from '../../../../../../do-an/ngx-admin/src/app/common/constants/url.constant';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { environment } from '../../../environments/environment';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
 
-  public user: User;
+  public user;
 
   constructor(
     private router: Router,
     private angularFireAuth: AngularFireAuth,
     private apiService: ApiService,
-    // private userService: UserService,
+    private userService: UserService,
   ) {
 
     const currentUser = localStorage.getItem('user');
     if (currentUser) {
       try {
-        this.user = JSON.parse(currentUser) as User;
+        this.user = JSON.parse(currentUser);
       } catch (e) {
         // console.log('Error get current user from storage', e)
       }
@@ -37,7 +34,7 @@ export class AuthenticationService {
 
   updateLocalUser(): void {
     localStorage.setItem('user', JSON.stringify(this.user));
-    // this.userService.checkUser().subscribe();
+    this.userService.checkUser().subscribe();
   }
 
   GoogleAuth() {
@@ -92,9 +89,9 @@ export class AuthenticationService {
     passwordConfirm: string,
     firstName: string,
     lastName: string,
-    userType: UserTypeEnum,
+    userType: string,
   ) {
-    const url = `${environment.serverURL}${environment.user}/signup`;
+    const url = `${environment.serverURL}/user/signup`;
     const body = {
       email,
       password,
@@ -103,7 +100,7 @@ export class AuthenticationService {
       lastName,
       userType,
     };
-    return this.apiService.postAPI<RegisterResponse, RegisterRequest>(url, body);
+    return this.apiService.postAPI(url, body);
   }
 
   isLoggedIn(): boolean {
@@ -119,7 +116,7 @@ export class AuthenticationService {
     localStorage.clear();
 
     this.user = undefined;
-    this.router.navigate([URL_LOGIN]);
+    this.router.navigate(['/auth/login']);
 
   }
 }

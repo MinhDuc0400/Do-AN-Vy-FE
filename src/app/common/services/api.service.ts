@@ -32,7 +32,7 @@ export class ApiService {
     });
   }
 
-  getAPI<T>(url: string): Observable<T> {
+  getAPI<T>(url: string): Observable<T | any> {
     return this.http.get<T>(url, {
       headers: this.getHeaders(),
     })
@@ -45,7 +45,7 @@ export class ApiService {
       );
   }
 
-  postAPI<T, K>(url: string, body: K): Observable<T> {
+  postAPI<T, K>(url: string, body: K): Observable<T | any> {
     return this.http.post<T>(url, body, {
       headers: this.getHeaders(),
       observe: 'response', responseType: 'json',
