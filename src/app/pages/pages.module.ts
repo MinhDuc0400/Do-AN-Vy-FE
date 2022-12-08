@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NB_TIME_PICKER_CONFIG, NbMenuModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -19,6 +19,12 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
   ],
   declarations: [
     PagesComponent,
+  ],
+  providers: [
+    {
+      provide: NB_TIME_PICKER_CONFIG,
+      useValue: {},
+    },
   ],
 })
 export class PagesModule {

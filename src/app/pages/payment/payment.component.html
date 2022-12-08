@@ -3,14 +3,14 @@
   <!-- Position Column -->
   <ng-container matColumnDef="bienSoXe">
     <th mat-header-cell *matHeaderCellDef> Biển Số Xe </th>
-    <td mat-cell *matCellDef="let element"> {{element.bienSoXe}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.vehicleCode}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="vao">
     <th mat-header-cell *matHeaderCellDef> Thời Gian Vào </th>
     <td mat-cell *matCellDef="let element">
-      {{element.vao | date: 'short'}}
+      {{element.timeIn | date: 'short'}}
     </td>
   </ng-container>
 
@@ -18,25 +18,25 @@
   <ng-container matColumnDef="ra">
     <th mat-header-cell *matHeaderCellDef> Thời Gian Ra </th>
     <td mat-cell *matCellDef="let element">
-     {{element.ra | date: 'short'}}
+     {{element.timeOut | date: 'short'}}
     </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="tongThoiGianGui">
     <th mat-header-cell *matHeaderCellDef> Thời Gian Gửi (Phút) </th>
-    <td mat-cell *matCellDef="let element"> {{element.tongThoiGianGui}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.timeDuration}} </td>
   </ng-container>
 
 
   <ng-container matColumnDef="tongTien">
     <th mat-header-cell *matHeaderCellDef> Tổng Tiền </th>
-    <td mat-cell *matCellDef="let element"> {{element.tongTien}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.fee}} </td>
   </ng-container>
 
   <ng-container matColumnDef="thoiGianThanhToan">
     <th mat-header-cell *matHeaderCellDef> Thanh Toán Lúc </th>
-    <td mat-cell *matCellDef="let element"> {{element.thoiGianThanhToan | date: 'short'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.paymentAt | date: 'short'}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columns"></tr>

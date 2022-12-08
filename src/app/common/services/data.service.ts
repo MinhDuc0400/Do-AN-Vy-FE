@@ -11,7 +11,19 @@ export class DataService {
     private apiService: ApiService,
   ) { }
 
-  getListData() {
-    return this.apiService.getAPI<any[]>(this.url);
+  getListData(search = '', status = '', dateType = 'in', timeStart = '', timeEnd = '') {
+    return this.apiService.getAPI<any[]>(this.url + '/search' + `?search=${search}&status=${status}&dateType=${dateType}&timeStart=${timeStart}&timeEnd=${timeEnd}`);
+  }
+
+  getListDataPayment(search = '', status = '', dateType = 'in', timeStart = '', timeEnd = '', isPayment = true) {
+    return this.apiService.getAPI<any[]>(this.url + '/search' + `?search=${search}&status=${status}&dateType=${dateType}&timeStart=${timeStart}&timeEnd=${timeEnd}&isPayment=${isPayment}`);
+  }
+
+  getDetailData(id: string) {
+    return this.apiService.getAPI<any[]>(this.url + `/${id}`);
+  }
+
+  postPayment(id: string) {
+    return this.apiService.postAPI(this.url + '/payment', {id});
   }
 }

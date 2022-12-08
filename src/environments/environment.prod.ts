@@ -6,6 +6,7 @@
 export const environment = {
   production: true,
   serverURL: 'http://127.0.0.1:3001/api/v1', // local
+  domainURL: 'https://do-an-vy-fe.web.app/',
   firebaseConfig: {
     apiKey: 'AIzaSyA-5IRQGWEJLblqImYz_2s9Jw16-LXOA50',
     authDomain: 'doan-eed4a.firebaseapp.com',
