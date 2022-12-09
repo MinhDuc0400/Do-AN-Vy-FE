@@ -4,6 +4,8 @@ import { DataService } from '../../common/services/data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup } from '@angular/forms';
+import { io } from 'socket.io-client';
+import { environment } from '../../../environments/environment';
 
 export interface PeriodicElement {
   id: number;
@@ -28,6 +30,8 @@ export class InOutListComponent implements OnInit {
   dataSource;
 
   filterForm: FormGroup;
+
+  socket: any;
 
   @ViewChild(MatSort) sort: MatSort;
   constructor(
@@ -59,6 +63,41 @@ export class InOutListComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res);
       });
     });
+    this.handleSocket();
+
+  }
+
+  handleSocket() {
+    const idToken = localStorage.getItem('idToken');
+    this.socket = io(`${environment.socketURL}?token=${idToken}`, {
+      auth: {
+        query: idToken,
+      },
+      transports: ['websocket'],
+      upgrade: false,
+    }).connect();
+    this.socket.on('data.in', data => {
+      this.dataSource = new MatTableDataSource([
+        data,
+        ...this.dataSource.filteredData,
+      ]);
+    });
+    this.socket.on('data.out', data => {
+      if (data && data._id) {
+        const index = this.dataSource.filteredData.findIndex(el => el._id === data._id);
+        if (index > -1) {
+          this.dataSource.filteredData[index] = data;
+          this.dataSource = new MatTableDataSource([
+            ...this.dataSource.filteredData,
+          ]);
+        }
+        this.goToQr(data._id);
+      }
+    });
+  }
+
+  goToQr(id: string) {
+    this.router.navigate(['./pages/payment/qr/' + id]);
   }
 
   viewDetail(item) {

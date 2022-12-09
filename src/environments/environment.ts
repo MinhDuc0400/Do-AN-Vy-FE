@@ -10,7 +10,8 @@
 
 export const environment = {
   production: false,
-  serverURL: 'https://18d9-171-241-81-206.ap.ngrok.io/api/v1', // local
+  serverURL: 'https://01b6-171-241-50-107.ap.ngrok.io/api/v1', // local
+  socketURL: 'wss://648b-171-241-50-107.ap.ngrok.io/', // local
   domainURL: 'https://do-an-vy-fe.web.app/',
   firebaseConfig: {
     apiKey: 'AIzaSyA-5IRQGWEJLblqImYz_2s9Jw16-LXOA50',
