@@ -5,8 +5,8 @@
  */
 export const environment = {
   production: true,
-  serverURL: 'https://01b6-171-241-50-107.ap.ngrok.io/api/v1', // local
-  socketURL: 'wss://648b-171-241-50-107.ap.ngrok.io/', // local
+  serverURL: 'http://35.240.201.34/api/v1', // local
+  socketURL: 'http://35.240.201.34/', // local
   domainURL: 'https://do-an-vy-fe.web.app/',
   firebaseConfig: {
     apiKey: 'AIzaSyA-5IRQGWEJLblqImYz_2s9Jw16-LXOA50',
