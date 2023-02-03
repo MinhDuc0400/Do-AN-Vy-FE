@@ -26,7 +26,7 @@ export interface PeriodicElement {
 
 
 export class InOutListComponent implements OnInit {
-  columns: string[] = ['bienSoXe', 'vao', 'ra', 'tongThoiGianGui'];
+  columns: string[] = ['STT', 'bienSoXe', 'vao', 'ra', 'tongThoiGianGui'];
   dataSource;
 
   filterForm: FormGroup;
@@ -49,7 +49,12 @@ export class InOutListComponent implements OnInit {
       },
     );
     this.dataService.getListData().subscribe(res => {
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.map((el, index) => {
+        return {
+          ...el,
+          position: index + 1,
+        };
+      }));
     });
 
     this.filterForm.valueChanges.subscribe(filter => {
