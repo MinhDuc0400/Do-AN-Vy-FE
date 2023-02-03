@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
+import { NbSpinnerService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-qr-page',
@@ -11,14 +12,12 @@ export class QrPageComponent implements OnInit {
   public stringUrl: string;
   constructor(
     private route: ActivatedRoute,
+    private spinner: NbSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    this.spinner.load();
     this.stringUrl = environment.domainURL + 'pages/payment/' + this.route.snapshot.params.id;
-  }
-
-  open() {
-
   }
 
 }

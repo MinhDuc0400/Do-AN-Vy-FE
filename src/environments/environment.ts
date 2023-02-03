@@ -12,7 +12,7 @@ export const environment = {
   production: false,
   serverURL: 'http://35.240.201.34/api/v1', // local
   socketURL: 'http://35.240.201.34/', // local
-  domainURL: 'https://do-an-vy-fe.web.app/',
+  domainURL: 'http://34.125.237.225/',
   firebaseConfig: {
     apiKey: 'AIzaSyA-5IRQGWEJLblqImYz_2s9Jw16-LXOA50',
     authDomain: 'doan-eed4a.firebaseapp.com',
