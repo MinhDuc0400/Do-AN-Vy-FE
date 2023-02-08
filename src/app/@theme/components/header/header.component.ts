@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { UserService } from '../../../common/services/user.service';
 import { AuthenticationService } from '../../../common/services/autentication.service';
 import { Router } from '@angular/router';
+import { DoorService } from '../../../common/services/door.service';
 
 @Component({
   selector: 'ngx-header',
@@ -21,7 +22,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
-
+  doorStatus = {
+    inOpen: false,
+    outOpen: false,
+  };
   constructor(
     public authService: AuthenticationService,
     private sidebarService: NbSidebarService,
@@ -30,7 +34,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserService,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+    private doorService: DoorService,
+  ) {
   }
 
   ngOnInit() {
@@ -68,13 +74,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
+  changeDoorStatus(type: string, status: boolean) {
+    switch (type) {
+      case 'IN':
+        this.doorService.controlInDoor(status ? 'O' : 'C').subscribe();
+        this.doorStatus.inOpen = !this.doorStatus.inOpen;
+        break;
+      case 'OUT':
+        this.doorService.controlOutDoor(status ? 'O' : 'C').subscribe();
+        this.doorStatus.outOpen = !this.doorStatus.outOpen;
+        break;
+      default:
+        break;
+    }
+  }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  changeTheme(themeName: string) {
-    this.themeService.changeTheme(themeName);
   }
 
   toggleSidebar(): boolean {

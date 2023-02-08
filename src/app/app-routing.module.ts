@@ -17,8 +17,8 @@ export const routes: Routes = [
     loadChildren: () => import('./blank/blank.module')
       .then(m => m.BlankModule),
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth' },
 ];
 
 const config: ExtraOptions = {
