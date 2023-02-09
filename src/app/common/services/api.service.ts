@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
-import { catchError, pluck } from 'rxjs/operators';
+import { catchError, pluck, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -38,6 +38,18 @@ export class ApiService {
     })
       .pipe(
         pluck('data'),
+        catchError(err => {
+          this.toastService.danger(err.error.message, 'ERROR');
+          return of(err);
+        }),
+      );
+  }
+
+  getAPINoPluck<T>(url: string): Observable<T | any> {
+    return this.http.get<T>(url, {
+      headers: this.getHeaders(),
+    })
+      .pipe(
         catchError(err => {
           this.toastService.danger(err.error.message, 'ERROR');
           return of(err);

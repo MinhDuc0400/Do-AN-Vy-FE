@@ -11,11 +11,15 @@ export class DoorService {
   constructor(
     private apiService: ApiService,
   ) { }
-  controlInDoor(status: string) {
-    return this.apiService.getAPI(this.url + '/control-in-door?status=' + status);
+
+  doorStatus(door: string) {
+    return this.apiService.getAPINoPluck(this.url + '/door-status?door=' + door);
   }
 
-  controlOutDoor(status: string) {
-    return this.apiService.getAPI(this.url + '/control-out-door?status=' + status);
+  controlDoor(door: string, status: string) {
+    return this.apiService.postAPI(this.url + '/control-door', {
+      door,
+      status,
+    });
   }
 }
