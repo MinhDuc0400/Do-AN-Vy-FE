@@ -11,4 +11,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     link: '/pages/payment',
   },
+  {
+    title: 'Statistic',
+    icon: 'layout-outline',
+    children: [
+      {
+        title: 'Vehicle',
+        link: '/pages/statistic/vehicle',
+      },
+      {
+        title: 'Profit',
+        link: '/pages/statistic/profit',
+      },
+    ],
+  },
 ];

@@ -19,6 +19,11 @@ const routes: Routes = [{
         .then(m => m.PaymentModule),
     },
     {
+      path: 'statistic',
+      loadChildren: () => import('./statistic/statistic.module')
+        .then(m => m.StatisticModule),
+    },
+    {
       path: '',
       redirectTo: 'in-out-list',
       pathMatch: 'full',
