@@ -19,9 +19,19 @@ const routes: Routes = [{
         .then(m => m.PaymentModule),
     },
     {
+      path: 'admin',
+      loadChildren: () => import('../admin/admin.module')
+        .then(m => m.AdminModule),
+    },
+    {
       path: 'statistic',
       loadChildren: () => import('./statistic/statistic.module')
         .then(m => m.StatisticModule),
+    },
+    {
+      path: 'user',
+      loadChildren: () => import('./user/user.module')
+        .then(m => m.UserModule),
     },
     {
       path: '',

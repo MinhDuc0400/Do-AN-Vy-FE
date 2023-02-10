@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
         }]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      userType: new FormControl(this.userTypeList[0].value, [Validators.required]),
+      userType: new FormControl(this.userTypeList[1].value, [Validators.required]),
   });
 
     // this.checkAuth();

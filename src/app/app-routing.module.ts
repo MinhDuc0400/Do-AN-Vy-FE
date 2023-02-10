@@ -17,11 +17,6 @@ export const routes: Routes = [
     loadChildren: () => import('./blank/blank.module')
       .then(m => m.BlankModule),
   },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module')
-      .then(m => m.AdminModule),
-  },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth' },
 ];

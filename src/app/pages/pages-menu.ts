@@ -12,6 +12,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/payment',
   },
   {
+    title: 'Door Management',
+    icon: 'home-outline',
+    link: '/pages/admin',
+  },
+  {
+    title: 'User Management',
+    icon: 'home-outline',
+    link: '/pages/user',
+  },
+  {
     title: 'Statistic',
     icon: 'layout-outline',
     children: [

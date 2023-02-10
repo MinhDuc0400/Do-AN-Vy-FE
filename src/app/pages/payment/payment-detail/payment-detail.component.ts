@@ -26,7 +26,7 @@ export class PaymentDetailComponent implements OnInit {
 
   payment() {
     this.dataService.postPayment(this.itemId).subscribe((res) => {
-      res && this.router.navigate(['pages/payment/result/success']);
+      res && this.router.navigate(['blank/result/success']);
     });
   }
 

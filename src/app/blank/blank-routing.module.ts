@@ -2,15 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './blank.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
+import { PaymentDoneComponent } from '../pages/payment/payment-done/payment-done.component';
+import { PaymentDetailComponent } from '../pages/payment/payment-detail/payment-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: BlankComponent,
-  },
-  {
-    path: 'qr/:id',
-    component: QrPageComponent,
+    children: [
+      {
+        path: 'qr/:id',
+        component: QrPageComponent,
+      },
+      {
+        path: 'result/success',
+        component: PaymentDoneComponent,
+      },
+      {
+        path: ':id',
+        component: PaymentDetailComponent,
+      },
+    ],
   },
 ];
 
