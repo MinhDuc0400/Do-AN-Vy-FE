@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbSpinnerService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-payment-done',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentDoneComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private spinner: NbSpinnerService,
+  ) { }
 
   ngOnInit(): void {
+    this.spinner.load();
   }
 
 }

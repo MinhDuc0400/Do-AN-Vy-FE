@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { BlankRoutingModule } from './blank-routing.module';
 import { BlankComponent } from './blank.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
-import { NbButtonModule, NbCardModule } from '@nebular/theme';
+import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
+import { PaymentDoneComponent } from './payment-done/payment-done.component';
 import { QRCodeModule } from 'angularx-qrcode';
-import { PaymentDetailComponent } from '../pages/payment/payment-detail/payment-detail.component';
-import { PaymentDoneComponent } from '../pages/payment/payment-done/payment-done.component';
+import { NbButtonModule, NbCardModule, NbLayoutModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 
 
@@ -24,6 +24,8 @@ import { ThemeModule } from '../@theme/theme.module';
     QRCodeModule,
     NbCardModule,
     NbButtonModule,
+    ThemeModule,
+    NbLayoutModule,
   ],
 })
 export class BlankModule { }

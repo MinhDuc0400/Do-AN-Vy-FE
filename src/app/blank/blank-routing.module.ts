@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './blank.component';
 import { QrPageComponent } from './qr-page/qr-page.component';
-import { PaymentDoneComponent } from '../pages/payment/payment-done/payment-done.component';
-import { PaymentDetailComponent } from '../pages/payment/payment-detail/payment-detail.component';
+import { PaymentDoneComponent } from './payment-done/payment-done.component';
+import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
 
 const routes: Routes = [
   {

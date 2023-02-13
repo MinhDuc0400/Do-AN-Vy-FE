@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../../common/services/data.service';
+import { DataService } from '../../common/services/data.service';
+import { NbSpinnerService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-payment-detail',
@@ -15,9 +16,11 @@ export class PaymentDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dataService: DataService,
+    private spinner: NbSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    this.spinner.load();
     this.itemId = this.route.snapshot.params.id;
     this.dataService.getDetailData(this.itemId).subscribe(res => {
       this.item = res;

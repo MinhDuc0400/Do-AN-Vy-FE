@@ -85,6 +85,18 @@ export class ApiService {
       );
   }
 
+  patchAPI<T>(url: string, body: T) {
+    return this.http.patch<T>(url, body, {
+      headers: this.getHeaders(),
+    })
+      .pipe(
+        catchError(err => {
+          this.toastService.danger(err.error.message, 'ERROR');
+          return of(err);
+        }),
+      );
+  }
+
   deleteAPI<T>(url: string) {
     return this.http.delete<T>(url, {
       headers: this.getHeaders(),

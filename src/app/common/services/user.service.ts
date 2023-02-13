@@ -9,12 +9,44 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserService {
   private readonly url = environment.serverURL + '/user';
+  private readonly adminUrl = environment.serverURL + '/admin/user';
   public currentUser = new BehaviorSubject<any>(null);
 
   constructor(
     private apiService: ApiService,
   ) { }
 
+  getUsers(search = '', isActive = '') {
+    return this.apiService.getAPI(this.adminUrl +
+      '/search?textSearch=' + search);
+  }
+
+  deleteUser(id: string) {
+    return this.apiService.deleteAPI(this.adminUrl +
+      '?id=' + id);
+  }
+
+  updateUser(body) {
+    return this.apiService.patchAPI(this.adminUrl + '/update',
+      {
+        isActive: body.isActive,
+        firstName: body.firstName,
+        lastName: body.lastName,
+        id: body._id,
+      });
+  }
+
+  createUser(body) {
+    return this.apiService.postAPI(this.adminUrl + '/create',
+      {
+        email: body.email,
+        firstName: body.firstName,
+        lastName: body.lastName,
+        password: body.password,
+        passwordConfirm: body.password,
+
+      });
+  }
 
   getDisplayName(firstName: string, lastName: string): string {
     return (firstName || '') + ' ' + (lastName || '');
