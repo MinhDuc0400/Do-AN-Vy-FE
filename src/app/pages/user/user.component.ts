@@ -38,12 +38,10 @@ export class UserComponent implements OnInit {
       email: {
         title: 'E-mail',
         type: 'string',
-        editable: false,
       },
       password: {
         title: 'Password',
         type: 'password',
-        editable: false,
       },
       isActive: {
         title: 'Active',

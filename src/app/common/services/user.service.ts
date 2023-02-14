@@ -32,6 +32,8 @@ export class UserService {
         isActive: body.isActive,
         firstName: body.firstName,
         lastName: body.lastName,
+        email: body.email,
+        password: body.password,
         id: body._id,
       });
   }
