@@ -20,6 +20,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'User Management',
     icon: 'home-outline',
     link: '/pages/user',
+    hidden: localStorage.getItem('userType') === 'user',
   },
   {
     title: 'Statistic',
