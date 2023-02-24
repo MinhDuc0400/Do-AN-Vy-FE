@@ -96,15 +96,9 @@ export class InOutListComponent implements OnInit {
             ...this.dataSource.filteredData,
           ]);
         }
-        this.goToQr(data._id);
       }
     });
   }
-
-  goToQr(id: string) {
-    this.router.navigate(['./pages/payment/qr/' + id]);
-  }
-
   viewDetail(item) {
     this.router.navigate(['./pages/in-out-list/' + item._id]);
   }
