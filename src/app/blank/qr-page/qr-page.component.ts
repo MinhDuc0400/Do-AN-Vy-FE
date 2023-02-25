@@ -17,7 +17,7 @@ export class QrPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.load();
-    this.stringUrl = environment.domainURL + 'pages/payment/' + this.route.snapshot.params.id;
+    this.stringUrl = environment.domainURL + 'blank/' + this.route.snapshot.params.id;
   }
 
 }

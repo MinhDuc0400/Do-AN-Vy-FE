@@ -10,7 +10,7 @@
   <ng-container matColumnDef="vao">
     <th mat-header-cell *matHeaderCellDef> Thời Gian Vào </th>
     <td mat-cell *matCellDef="let element">
-      {{element.timeIn | date: 'short'}}
+      {{element.timeIn | date: 'dd/MM/YYYY h:mm:ss a'}}
     </td>
   </ng-container>
 
@@ -18,7 +18,7 @@
   <ng-container matColumnDef="ra">
     <th mat-header-cell *matHeaderCellDef> Thời Gian Ra </th>
     <td mat-cell *matCellDef="let element">
-     {{element.timeOut | date: 'short'}}
+     {{element.timeOut | date: 'dd/MM/YYYY h:mm:ss a'}}
     </td>
   </ng-container>
 
@@ -36,7 +36,7 @@
 
   <ng-container matColumnDef="thoiGianThanhToan">
     <th mat-header-cell *matHeaderCellDef> Thanh Toán Lúc </th>
-    <td mat-cell *matCellDef="let element"> {{element.paymentAt | date: 'short'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.paymentAt | date: 'dd/MM/YYYY h:mm:ss a'}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columns"></tr>

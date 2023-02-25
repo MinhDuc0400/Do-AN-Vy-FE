@@ -36,7 +36,7 @@ export class BlankComponent implements OnInit {
   }
 
   goToQr(id: string) {
-    this.router.navigate(['./pages/payment/qr/' + id]);
+    this.router.navigate(['blank/qr/' + id]);
   }
 
 
