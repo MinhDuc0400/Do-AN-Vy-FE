@@ -9,6 +9,7 @@ import { PaymentDoneComponent } from './payment-done/payment-done.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NbButtonModule, NbCardModule, NbLayoutModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
+import { SafePipe } from './safe.pipe';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ThemeModule } from '../@theme/theme.module';
     QrPageComponent,
     PaymentDetailComponent,
     PaymentDoneComponent,
+    SafePipe,
   ],
   imports: [
     CommonModule,

@@ -1,1 +1,8 @@
 <router-outlet></router-outlet>
+<audio
+  [src]="audioSource | safe: 'url'"
+  id="audio"
+  controls
+  autoplay
+  #audioTag
+></audio>

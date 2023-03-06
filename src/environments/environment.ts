@@ -22,4 +22,6 @@ export const environment = {
     appId: '1:1042186111084:web:2b8f4933554da7b588b049',
     measurementId: 'G-MLBYNTJ2FR',
   },
+  googleSpeechUrl: 'https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=',
+  googleSpeechKey: 'AIzaSyBkijOlhknYei_yDbPVM8_Rb3BjudpuVH8',
 };

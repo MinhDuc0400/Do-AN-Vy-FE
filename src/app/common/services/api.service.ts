@@ -25,6 +25,15 @@ export class ApiService {
     });
   }
 
+  private getSpeechHeaders() {
+    return new HttpHeaders({
+      'Content-Type': 'text/plain',
+      'Accept': '*/*',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Access-Control-Allow-Origin': '*',
+    });
+  }
+
   getFormHeaders() {
     return new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('idToken')}`,
@@ -48,6 +57,18 @@ export class ApiService {
   getAPINoPluck<T>(url: string): Observable<T | any> {
     return this.http.get<T>(url, {
       headers: this.getHeaders(),
+    })
+      .pipe(
+        catchError(err => {
+          this.toastService.danger(err.error.message, 'ERROR');
+          return of(err);
+        }),
+      );
+  }
+
+  postSpeechAPI<T, K>(url: string, body: K): Observable<T | any> {
+    return this.http.post<T>(url, body, {
+      headers: this.getSpeechHeaders(),
     })
       .pipe(
         catchError(err => {
