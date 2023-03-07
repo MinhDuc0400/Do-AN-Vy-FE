@@ -3,7 +3,6 @@ import { NbSpinnerService } from '@nebular/theme';
 import { io } from 'socket.io-client';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { SpeechService } from '../common/services/speech.service';
 
 @Component({
   selector: 'ngx-blank',
@@ -18,7 +17,6 @@ export class BlankComponent implements OnInit {
   constructor(
     private spinner: NbSpinnerService,
     private router: Router,
-    private speechService: SpeechService,
 
   ) { }
 
@@ -46,15 +44,6 @@ export class BlankComponent implements OnInit {
 
   goToQr(id: string) {
     this.router.navigate(['blank/qr/' + id]);
-  }
-
-  getTexttoAudio(text: string) {
-    this.speechService.getBase64(text)
-      .subscribe(res => {
-        if (res && res.audioContent) {
-          this.loadAudio(res.audioContent);
-        }
-      });
   }
 
   loadAudio(dataURI: string) {

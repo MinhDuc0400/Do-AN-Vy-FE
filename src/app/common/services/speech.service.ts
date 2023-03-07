@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class SpeechService {
-  private baseUrl = environment.googleSpeechUrl + environment.googleSpeechKey;
+  private baseUrl = environment.googleSpeechUrl;
   constructor(
     private apiService: ApiService,
   ) { }

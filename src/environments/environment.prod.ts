@@ -18,5 +18,4 @@ export const environment = {
     measurementId: 'G-MLBYNTJ2FR',
   },
   googleSpeechUrl: 'https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=',
-  googleSpeechKey: 'AIzaSyBkijOlhknYei_yDbPVM8_Rb3BjudpuVH8',
 };
