@@ -37,9 +37,9 @@ export class BlankComponent implements OnInit {
         this.goToQr(data._id);
       }
     });
-    this.socket.on('audio', res => {
-      if (res && res.message) {
-        this.getTexttoAudio(res.message);
+    this.socket.on('error', res => {
+      if (res && res.audioContent) {
+        this.loadAudio(res.audioContent);
       }
     });
   }
@@ -58,7 +58,7 @@ export class BlankComponent implements OnInit {
   }
 
   loadAudio(dataURI: string) {
-    const binary = this.convertDataURIToBinary(dataURI);
+    const binary = this.convertDataURIToBinary('data:audio/ogg;base64,' + dataURI);
     const blob = new Blob([binary], {type : 'audio/ogg'});
     const blobUrl = URL.createObjectURL(blob);
     this.audioSource = blobUrl;
