@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { UserService } from '../../common/services/user.service';
+import { LicencePlateService } from '../../common/services/licence-plate.service';
 
 @Component({
-  selector: 'ngx-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  selector: 'ngx-pre-paid',
+  templateUrl: './pre-paid.component.html',
+  styleUrls: ['./pre-paid.component.scss'],
 })
-export class UserComponent implements OnInit {
+export class PrePaidComponent implements OnInit {
   settings = {
     mode: 'inline',
     add: {
@@ -27,61 +27,44 @@ export class UserComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      firstName: {
-        title: 'First Name',
+      licencePlate: {
+        title: 'Vehicle Code',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      password: {
-        title: 'Password',
-        type: 'password',
-      },
-      isActive: {
-        title: 'Active',
-        type: 'boolean',
+      amount: {
+        title: 'Balance',
+        type: 'number',
       },
     },
   };
   source: LocalDataSource = new LocalDataSource();
-
   constructor(
-    private userService: UserService,
+    private licencePlateService: LicencePlateService,
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(res => {
+    this.licencePlateService.getLicencePlates().subscribe(res => {
       if (res) {
-        this.source.load(res.map(el => {
-          return {
-            ...el,
-            password: '*********',
-          };
-        }));
+        this.source.load(res);
       }
     });
   }
 
-  onCreateConfirm(event): void {
-    this.userService.createUser(event.newData).subscribe();
+  onCreateConfirm(event) {
+    this.licencePlateService.createLicencePlate(event.newData.licencePlate, +event.newData.amount).subscribe();
   }
 
-  onEditConfirm(event): void {
-    this.userService.updateUser(event.newData).subscribe();
+  onEditConfirm(event) {
+    this.licencePlateService.updateLicencePlate(event.data._id, +event.newData.amount).subscribe();
   }
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
-      this.userService.deleteUser(event.data._id).subscribe();
+      this.licencePlateService.deleteLicencePlate(event.data._id).subscribe();
     } else {
       event.confirm.reject();
     }
   }
+
 }

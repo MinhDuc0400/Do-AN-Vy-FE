@@ -34,6 +34,11 @@ const routes: Routes = [{
         .then(m => m.UserModule),
     },
     {
+      path: 'pre-paid',
+      loadChildren: () => import('./pre-paid/pre-paid.module')
+        .then(m => m.PrePaidModule),
+    },
+    {
       path: '',
       redirectTo: 'in-out-list',
       pathMatch: 'full',

@@ -3,28 +3,28 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'In Out List',
-    icon: 'home-outline',
+    icon: 'list-outline',
     link: '/pages/in-out-list',
   },
   {
     title: 'Payment',
-    icon: 'home-outline',
+    icon: 'diagonal-arrow-left-down-outline',
     link: '/pages/payment',
   },
   {
     title: 'Door Management',
-    icon: 'home-outline',
+    icon: 'options-outline',
     link: '/pages/admin',
   },
   {
     title: 'User Management',
-    icon: 'home-outline',
+    icon: 'person-outline',
     link: '/pages/user',
     hidden: localStorage.getItem('userType') === 'user',
   },
   {
     title: 'Statistic',
-    icon: 'layout-outline',
+    icon: 'pie-chart-outline',
     children: [
       {
         title: 'Vehicle',
@@ -35,5 +35,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/statistic/profit',
       },
     ],
+  },
+  {
+    title: 'Pre Paid',
+    icon: 'credit-card-outline',
+    link: '/pages/pre-paid',
   },
 ];
